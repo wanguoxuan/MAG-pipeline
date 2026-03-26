@@ -1,0 +1,18 @@
+# Nextflow work directory and results
+work/
+results/
+.nextflow/
+.nextflow.log*
+.nextflow.pid
+
+# Conda environments
+.conda/
+
+# Reports
+reports/
+
+# Sample sheets with local paths
+samples.csv
+
+# OS
+.DS_Store
