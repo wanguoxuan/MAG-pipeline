@@ -12,6 +12,7 @@ nextflow.enable.dsl=2
 // ========================
 
 params.sample_sheet  = null   // CSV with columns: sample_id,batch,read1,read2
+params.bins_sheet    = null   // CSV with columns: sample_id,batch,bins_dir (for GTDBTK_ONLY entry)
 params.output_dir    = "./results"
 
 // QC parameters
@@ -114,11 +115,7 @@ if (params.help) {
     exit 0
 }
 
-if (!params.sample_sheet) {
-    log.error "ERROR: --sample_sheet is required"
-    helpMessage()
-    exit 1
-}
+// Entry-specific input validation is done inside each workflow block
 
 if (!params.skip_gtdbtk && !params.gtdbtk_db) {
     log.error "ERROR: --gtdbtk_db is required unless --skip_gtdbtk is set"
@@ -149,7 +146,42 @@ include { MERGE_GTDBTK_SUMMARIES } from './modules/gtdbtk'
 // Main Workflow
 // ========================
 
+// ========================
+// GTDB-Tk only entry point
+// ========================
+
+workflow GTDBTK_ONLY {
+
+    if (!params.bins_sheet) {
+        log.error "ERROR: --bins_sheet is required for GTDBTK_ONLY entry (CSV with columns: sample_id,batch,bins_dir)"
+        exit 1
+    }
+
+    Channel
+        .fromPath(params.bins_sheet)
+        .splitCsv(header: true)
+        .map { row -> tuple(row.sample_id, row.batch, file(row.bins_dir)) }
+        .set { bins_ch }
+
+    GTDBTK(bins_ch, params.gtdbtk_db)
+
+    MERGE_GTDBTK_SUMMARIES(
+        GTDBTK.out.bac_summary.collect(),
+        GTDBTK.out.arc_summary.collect()
+    )
+}
+
+// ========================
+// Full pipeline entry point
+// ========================
+
 workflow {
+
+    if (!params.sample_sheet) {
+        log.error "ERROR: --sample_sheet is required"
+        helpMessage()
+        exit 1
+    }
 
     // Read sample sheet
     Channel

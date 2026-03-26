@@ -82,6 +82,23 @@ bowtie2-build host_genome.fa /path/to/host_index/host
 ### Run
 
 ```bash
+# Run GTDB-Tk only on existing MAGs
+nextflow run main.nf -entry GTDBTK_ONLY \
+  --bins_sheet bins.csv \
+  --output_dir results \
+  --gtdbtk_db /path/to/gtdbtk_data \
+  -profile standard
+```
+
+Where `bins.csv` has columns: `sample_id`, `batch`, `bins_dir`
+
+```csv
+sample_id,batch,bins_dir
+S001,BATCH_1,/path/to/S001/bins
+S002,BATCH_1,/path/to/S002/bins
+```
+
+```bash
 # Local execution (conda), with host removal
 nextflow run main.nf \
   --sample_sheet samples.csv \
@@ -123,6 +140,7 @@ nextflow run main.nf \
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `--sample_sheet` | required | CSV with sample_id, batch, read1, read2 |
+| `--bins_sheet` | null | CSV with sample_id, batch, bins_dir (GTDBTK_ONLY entry only) |
 | `--output_dir` | `./results` | Output directory |
 | `--fastp_min_qual` | `20` | fastp minimum base quality |
 | `--fastp_min_len` | `50` | fastp minimum read length after trimming |
