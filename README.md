@@ -190,6 +190,7 @@ nextflow run main.nf \
 | `--gtdbtk_cpus` | `24` | CPUs for GTDB-Tk |
 | `--skip_gtdbtk` | `false` | Skip GTDB-Tk taxonomic classification |
 | `--skip_summary` | `false` | Skip summary generation |
+| `--queue_size` | `2` | Max concurrent jobs |
 
 ## Output Structure
 
