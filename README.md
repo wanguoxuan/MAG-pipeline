@@ -56,6 +56,32 @@ bash make_sample_sheet.sh /path/to/data/ samples.csv
 
 Supported read filename patterns: `_R1.fq.gz`, `_R1.fastq.gz`, `_1.fq.gz`, `_1.fastq.gz` (and R2 equivalents).
 
+### Running GTDB-Tk on existing MAGs
+
+If you already have MAGs, use the `GTDBTK_ONLY` entry point with a bins sheet CSV (`sample_id`, `batch`, `bins_dir`):
+
+```csv
+sample_id,batch,bins_dir
+S001,BATCH_1,/path/to/S001/bins
+S002,BATCH_1,/path/to/S002/bins
+```
+
+Auto-generate from a `BATCH/SAMPLE_ID/` directory containing `.fa` files:
+
+```bash
+bash make_bins_sheet.sh /path/to/mags/ bins.csv
+```
+
+Then run:
+
+```bash
+nextflow run main.nf -entry GTDBTK_ONLY \
+  --bins_sheet bins.csv \
+  --gtdbtk_db /path/to/gtdbtk_data \
+  --output_dir results \
+  -profile standard
+```
+
 ### Database requirements
 
 **GTDB-Tk reference data** (~85 GB for r220):
