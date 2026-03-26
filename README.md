@@ -273,3 +273,32 @@ MAG-pipeline/
     ├── gtdbtk.nf               # Taxonomic classification of MAGs
     └── summarize.nf            # Per-sample and merged summaries
 ```
+
+## Citations
+
+If you use this pipeline, please cite the following tools:
+
+**QC & Trimming**
+- **fastp**: Chen S, et al. fastp: an ultra-fast all-in-one FASTQ preprocessor. *Bioinformatics*. 2018;34(17):i884–i890. https://doi.org/10.1093/bioinformatics/bty560
+
+**Host Removal & Read Mapping**
+- **Bowtie2**: Langmead B, Salzberg SL. Fast gapped-read alignment with Bowtie 2. *Nat Methods*. 2012;9(4):357–359. https://doi.org/10.1038/nmeth.1923
+- **Samtools**: Li H, et al. The Sequence Alignment/Map format and SAMtools. *Bioinformatics*. 2009;25(16):2078–2079. https://doi.org/10.1093/bioinformatics/btp352
+
+**Assembly**
+- **MEGAHIT**: Li D, et al. MEGAHIT: An ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. *Bioinformatics*. 2015;31(10):1674–1676. https://doi.org/10.1093/bioinformatics/btv033
+
+**Binning**
+- **MetaBat2**: Kang DD, et al. MetaBAT 2: an adaptive binning algorithm for robust and efficient genome reconstruction from metagenome assemblies. *PeerJ*. 2019;7:e7359. https://doi.org/10.7717/peerj.7359
+- **MaxBin2**: Wu YW, et al. MaxBin 2.0: an automated binning algorithm to recover genomes from multiple metagenomic datasets. *Bioinformatics*. 2016;32(4):605–607. https://doi.org/10.1093/bioinformatics/btv638
+- **CONCOCT**: Alneberg J, et al. Binning metagenomic contigs by coverage and composition. *Nat Methods*. 2014;11(11):1144–1146. https://doi.org/10.1038/nmeth.3103
+
+**Bin Refinement**
+- **DAS Tool**: Sieber CMK, et al. Recovery of genomes from metagenomes via a dereplication, aggregation and scoring strategy. *Nat Microbiol*. 2018;3(7):836–843. https://doi.org/10.1038/s41564-018-0171-1
+
+**Quality Assessment**
+- **CheckM2**: Chklovski A, et al. CheckM2: a rapid, scalable and accurate tool for assessing microbial genome quality using machine learning. *Nat Methods*. 2023;20(8):1203–1212. https://doi.org/10.1038/s41592-023-01940-w
+
+**Taxonomic Classification**
+- **GTDB-Tk**: Chaumeil PA, et al. GTDB-Tk v2: memory friendly classification with the genome taxonomy database. *Bioinformatics*. 2022;38(23):5315–5316. https://doi.org/10.1093/bioinformatics/btac672
+- **GTDB**: Parks DH, et al. A complete domain-to-species taxonomy for Bacteria and Archaea. *Nat Biotechnol*. 2022;40(7):1021–1028. https://doi.org/10.1038/s41587-020-0501-8
