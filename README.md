@@ -171,7 +171,7 @@ nextflow run main.nf \
 | `--checkm2_cpus` | `16` | CPUs for CheckM2 |
 | `--gtdbtk_db` | required | Path to GTDB-Tk reference data (unless `--skip_gtdbtk`) |
 | `--gtdbtk_skani_sketch_dir` | `null` | Path to skani sketch dir for ANI screening (skips ANI screen if not provided) |
-| `--gtdbtk_cpus` | `24` | CPUs for GTDB-Tk |
+| `--gtdbtk_cpus` | `32` | CPUs for GTDB-Tk |
 | `--skip_gtdbtk` | `false` | Skip GTDB-Tk taxonomic classification |
 | `--skip_summary` | `false` | Skip summary generation |
 | `--queue_size` | `2` | Max concurrent jobs |
