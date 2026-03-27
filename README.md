@@ -34,7 +34,7 @@ all quality TSVs  → MERGE_CHECKM2_SUMMARIES → all_checkm2_quality.tsv
 | Binning | CONCOCT | 1.1.0 |
 | Bin Refinement | DAS Tool | 1.1.6 |
 | Quality Check | CheckM2 | 1.0.2 |
-| Taxonomy | GTDB-Tk | 2.4.0 |
+| Taxonomy | GTDB-Tk | 2.4.1 |
 
 ## Usage
 
@@ -300,5 +300,5 @@ If you use this pipeline, please cite the following tools:
 - **CheckM2**: Chklovski A, et al. CheckM2: a rapid, scalable and accurate tool for assessing microbial genome quality using machine learning. *Nat Methods*. 2023;20(8):1203–1212. https://doi.org/10.1038/s41592-023-01940-w
 
 **Taxonomic Classification**
-- **GTDB-Tk**: Chaumeil PA, et al. GTDB-Tk v2: memory friendly classification with the genome taxonomy database. *Bioinformatics*. 2022;38(23):5315–5316. https://doi.org/10.1093/bioinformatics/btac672
+- **GTDB-Tk v2**: Chaumeil PA, et al. GTDB-Tk v2: memory friendly classification with the genome taxonomy database. *Bioinformatics*. 2022;38(23):5315–5316. https://doi.org/10.1093/bioinformatics/btac672
 - **GTDB**: Parks DH, et al. A complete domain-to-species taxonomy for Bacteria and Archaea. *Nat Biotechnol*. 2022;40(7):1021–1028. https://doi.org/10.1038/s41587-020-0501-8
