@@ -28,7 +28,8 @@ process GTDBTK {
         --genome_dir ${bins_dir} \
         --out_dir ${sample_id}_gtdbtk \
         --cpus ${task.cpus} \
-        --extension fa
+        --extension fa \
+        ${params.gtdbtk_skani_sketch_dir ? "--skani_sketch_dir ${params.gtdbtk_skani_sketch_dir}" : "--skip_ani_screen"}
     """
 }
 

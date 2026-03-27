@@ -34,7 +34,7 @@ all quality TSVs  → MERGE_CHECKM2_SUMMARIES → all_checkm2_quality.tsv
 | Binning | CONCOCT | 1.1.0 |
 | Bin Refinement | DAS Tool | 1.1.6 |
 | Quality Check | CheckM2 | 1.1.0 |
-| Taxonomy | GTDB-Tk | 2.4.1 |
+| Taxonomy | GTDB-Tk | 2.6.1 |
 
 ## Usage
 
@@ -187,6 +187,7 @@ nextflow run main.nf \
 | `--checkm2_db` | `null` | Path to CheckM2 diamond database |
 | `--checkm2_cpus` | `16` | CPUs for CheckM2 |
 | `--gtdbtk_db` | required | Path to GTDB-Tk reference data (unless `--skip_gtdbtk`) |
+| `--gtdbtk_skani_sketch_dir` | `null` | Path to skani sketch dir for ANI screening (skips ANI screen if not provided) |
 | `--gtdbtk_cpus` | `24` | CPUs for GTDB-Tk |
 | `--skip_gtdbtk` | `false` | Skip GTDB-Tk taxonomic classification |
 | `--skip_summary` | `false` | Skip summary generation |

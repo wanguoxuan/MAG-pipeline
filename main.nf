@@ -46,8 +46,9 @@ params.checkm2_db    = null   // Path to CheckM2 database (optional; uses CHECKM
 params.checkm2_cpus  = 16
 
 // Taxonomy
-params.gtdbtk_db     = null
-params.gtdbtk_cpus   = 24
+params.gtdbtk_db       = null
+params.gtdbtk_skani_sketch_dir = null   // Optional skani sketch dir for ANI screening; skips ANI screen if not provided
+params.gtdbtk_cpus     = 24
 
 // Skip options
 params.skip_summary  = false

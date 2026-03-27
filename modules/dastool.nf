@@ -20,7 +20,7 @@ process DASTOOL {
     # Build scaffold2bin for MetaBat2 bins
     n_metabat=\$(ls ${metabat2_bins_dir}/*.fa 2>/dev/null | wc -l)
     if [ "\$n_metabat" -gt 0 ]; then
-        Fasta_to_Scaffolds2Bin.sh -e fa -i ${metabat2_bins_dir} > metabat2_s2b.tsv
+        Fasta_to_Contig2Bin.sh -e fa -i ${metabat2_bins_dir} > metabat2_s2b.tsv
         s2b_files="metabat2_s2b.tsv"
         labels="metabat2"
     fi
@@ -28,7 +28,7 @@ process DASTOOL {
     # Build scaffold2bin for MaxBin2 bins
     n_maxbin=\$(ls ${maxbin2_bins_dir}/*.fa 2>/dev/null | wc -l)
     if [ "\$n_maxbin" -gt 0 ]; then
-        Fasta_to_Scaffolds2Bin.sh -e fa -i ${maxbin2_bins_dir} > maxbin2_s2b.tsv
+        Fasta_to_Contig2Bin.sh -e fa -i ${maxbin2_bins_dir} > maxbin2_s2b.tsv
         s2b_files="\${s2b_files:+\${s2b_files},}maxbin2_s2b.tsv"
         labels="\${labels:+\${labels},}maxbin2"
     fi
@@ -36,12 +36,12 @@ process DASTOOL {
     # Build scaffold2bin for CONCOCT bins
     n_concoct=\$(ls ${concoct_bins_dir}/*.fa 2>/dev/null | wc -l)
     if [ "\$n_concoct" -gt 0 ]; then
-        Fasta_to_Scaffolds2Bin.sh -e fa -i ${concoct_bins_dir} > concoct_s2b.tsv
+        Fasta_to_Contig2Bin.sh -e fa -i ${concoct_bins_dir} > concoct_s2b.tsv
         s2b_files="\${s2b_files:+\${s2b_files},}concoct_s2b.tsv"
         labels="\${labels:+\${labels},}concoct"
     fi
 
-    # Exit gracefully if no bins from any binner
+    # Exit if no bins from any binner
     if [ -z "\$s2b_files" ]; then
         echo "No bins from any binner for ${sample_id}, skipping DAS Tool" >&2
         mkdir -p ${sample_id}_dastool_bins
