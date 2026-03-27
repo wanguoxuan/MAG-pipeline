@@ -108,23 +108,6 @@ bowtie2-build host_genome.fa /path/to/host_index/host
 ### Run
 
 ```bash
-# Run GTDB-Tk only on existing MAGs
-nextflow run main.nf -entry GTDBTK_ONLY \
-  --bins_sheet bins.csv \
-  --output_dir results \
-  --gtdbtk_db /path/to/gtdbtk_data \
-  -profile standard
-```
-
-Where `bins.csv` has columns: `sample_id`, `batch`, `bins_dir`
-
-```csv
-sample_id,batch,bins_dir
-S001,BATCH_1,/path/to/S001/bins
-S002,BATCH_1,/path/to/S002/bins
-```
-
-```bash
 # Local execution (conda), with host removal
 nextflow run main.nf \
   --sample_sheet samples.csv \
