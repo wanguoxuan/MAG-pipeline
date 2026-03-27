@@ -1,27 +1,27 @@
 process CHECKM2 {
     tag "${sample_id}"
     label 'process_high'
-    publishDir "${params.output_dir}/${batch}/${sample_id}/checkm2", mode: 'copy'
+    publishDir "${params.output_dir}/${batch}/${sample_id}", mode: 'copy'
 
     input:
     tuple val(sample_id), val(batch), path(bins_dir)
 
     output:
-    tuple val(sample_id), val(batch), path("${sample_id}_checkm2"),                           emit: output_dir
-    path "${sample_id}_checkm2/quality_report.tsv", optional: true,                            emit: quality_report
+    tuple val(sample_id), val(batch), path("checkm2"),                           emit: output_dir
+    path "checkm2/quality_report.tsv", optional: true,                            emit: quality_report
 
     script:
     """
     n_bins=\$(ls ${bins_dir}/*.fa 2>/dev/null | wc -l)
     if [ "\$n_bins" -eq 0 ]; then
         echo "No bins found for ${sample_id}, skipping CheckM2" >&2
-        mkdir -p ${sample_id}_checkm2
+        mkdir -p checkm2
         exit 0
     fi
 
     checkm2 predict \
         --input ${bins_dir} \
-        --output-directory ${sample_id}_checkm2 \
+        --output-directory checkm2 \
         --extension fa \
         --threads ${task.cpus} \
         ${params.checkm2_db ? "--database_path ${params.checkm2_db}" : ""}

@@ -1,16 +1,16 @@
 process GTDBTK {
     tag "${sample_id}"
     label 'process_gtdbtk'
-    publishDir "${params.output_dir}/${batch}/${sample_id}/gtdbtk", mode: 'copy'
+    publishDir "${params.output_dir}/${batch}/${sample_id}", mode: 'copy'
 
     input:
     tuple val(sample_id), val(batch), path(bins_dir)
     val gtdbtk_db
 
     output:
-    tuple val(sample_id), val(batch), path("${sample_id}_gtdbtk"),                    emit: classify
-    path "${sample_id}_gtdbtk/gtdbtk.bac120.summary.tsv", optional: true,             emit: bac_summary
-    path "${sample_id}_gtdbtk/gtdbtk.ar53.summary.tsv",   optional: true,             emit: arc_summary
+    tuple val(sample_id), val(batch), path("gtdbtk"),                    emit: classify
+    path "gtdbtk/${sample_id}_bac120.summary.tsv", optional: true,       emit: bac_summary
+    path "gtdbtk/${sample_id}_ar53.summary.tsv",   optional: true,       emit: arc_summary
 
     script:
     """
@@ -18,7 +18,7 @@ process GTDBTK {
     n_bins=\$(ls ${bins_dir}/*.fa 2>/dev/null | wc -l)
     if [ "\$n_bins" -eq 0 ]; then
         echo "No bins found for ${sample_id}, skipping GTDB-Tk" >&2
-        mkdir -p ${sample_id}_gtdbtk
+        mkdir -p gtdbtk
         exit 0
     fi
 
@@ -26,10 +26,14 @@ process GTDBTK {
 
     gtdbtk classify_wf \
         --genome_dir ${bins_dir} \
-        --out_dir ${sample_id}_gtdbtk \
+        --out_dir gtdbtk \
         --cpus ${task.cpus} \
         --extension fa \
         ${params.gtdbtk_skani_sketch_dir ? "--skani_sketch_dir ${params.gtdbtk_skani_sketch_dir}" : "--skip_ani_screen"}
+
+    # Rename outputs to include sample_id
+    [ -f gtdbtk/gtdbtk.bac120.summary.tsv ] && mv gtdbtk/gtdbtk.bac120.summary.tsv gtdbtk/${sample_id}_bac120.summary.tsv || true
+    [ -f gtdbtk/gtdbtk.ar53.summary.tsv ]   && mv gtdbtk/gtdbtk.ar53.summary.tsv   gtdbtk/${sample_id}_ar53.summary.tsv   || true
     """
 }
 

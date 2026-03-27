@@ -213,12 +213,10 @@ results/
         │   ├── *_dastool_DASTool_summary.tsv
         │   └── *_dastool_DASTool_scores.tsv
         ├── checkm2/
-        │   └── *_checkm2/
-        │       └── quality_report.tsv
+        │   └── quality_report.tsv
         └── gtdbtk/
-            └── *_gtdbtk/
-                ├── gtdbtk.bac120.summary.tsv
-                └── gtdbtk.ar53.summary.tsv
+            ├── *_bac120.summary.tsv
+            └── *_ar53.summary.tsv
 results/
 └── summary/
     ├── all_bins_summary.tsv
