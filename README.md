@@ -24,7 +24,7 @@ all quality TSVs  → MERGE_CHECKM2_SUMMARIES → all_checkm2_quality.tsv
 
 | Step | Tool | Version |
 |------|------|---------|
-| QC & Trimming | fastp | 0.23.4 |
+| QC & Trimming | fastp | 1.0.1 |
 | Host Removal | Bowtie2 + Samtools | 2.4.5 / 1.15.1 |
 | Assembly | MEGAHIT | 1.2.9 |
 | Read Mapping | Bowtie2 + Samtools | 2.4.5 / 1.15.1 |
