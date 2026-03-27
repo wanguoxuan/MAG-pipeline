@@ -13,8 +13,9 @@ process BOWTIE2_HOST_REMOVE {
 
     script:
     """
-    # Find the index basename (any .bt2 file's prefix)
-    index_base=\$(ls ${host_index_dir}/*.bt2 2>/dev/null | head -1 | sed 's/\\.1\\.bt2//' | sed 's/\\.rev\\.1\\.bt2//' | xargs basename)
+    # Find the index basename from the .1.bt2 file
+    bt2_file=\$(ls ${host_index_dir}/*.1.bt2 ${host_index_dir}/*.1.bt2l 2>/dev/null | head -1)
+    index_base=\$(basename "\${bt2_file}" | sed 's/\\.1\\.bt2l\\?//')
     index_path="${host_index_dir}/\${index_base}"
 
     bowtie2 \
