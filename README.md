@@ -33,7 +33,7 @@ all quality TSVs  → MERGE_CHECKM2_SUMMARIES → all_checkm2_quality.tsv
 | Binning | MaxBin2 | 2.2.7 |
 | Binning | CONCOCT | 1.1.0 |
 | Bin Refinement | DAS Tool | 1.1.6 |
-| Quality Check | CheckM2 | 1.0.2 |
+| Quality Check | CheckM2 | 1.1.0 |
 | Taxonomy | GTDB-Tk | 2.4.1 |
 
 ## Usage
